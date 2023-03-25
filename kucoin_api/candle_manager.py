@@ -20,7 +20,35 @@ def update_candle(candle, price, amount):
     candle["volume"] += amount
 
 
-def process_trade(trade, current_candles, historical_candles):
+def create_heikin_ashi_candles(candles):
+    ha_candles = candles.copy()
+
+    # Calculate Heikin Ashi Open
+    if len(candles) > 1:
+        ha_candles["ha_open"] = (
+            candles["open"].shift(1) + candles["close"].shift(1)
+        ) / 2
+    else:
+        ha_candles["ha_open"] = (candles["open"] + candles["close"]) / 2
+
+    # Calculate Heikin Ashi Close
+    ha_candles["ha_close"] = (
+        candles["open"] + candles["high"] + candles["low"] + candles["close"]
+    ) / 4
+
+    # Calculate Heikin Ashi High and Low
+    ha_candles["ha_high"] = candles[["high", "ha_open", "ha_close"]].max(axis=1)
+    ha_candles["ha_low"] = candles[["low", "ha_open", "ha_close"]].min(axis=1)
+
+    # Add color column
+    ha_candles["color"] = "grey"
+    ha_candles.loc[ha_candles["ha_close"] > ha_candles["ha_open"], "color"] = "green"
+    ha_candles.loc[ha_candles["ha_close"] < ha_candles["ha_open"], "color"] = "red"
+
+    return ha_candles
+
+
+def process_trade(trade, current_candles, ha_historical_candles):
     timestamp = trade["timestamp"]
     price = trade["price"]
     amount = trade["amount"]
@@ -32,29 +60,10 @@ def process_trade(trade, current_candles, historical_candles):
             )
         elif timestamp >= current_candles[duration - 1]["start_time"] + duration * 60:
             # Calculate the average trading volume
-            avg_volume = historical_candles[duration - 1]["volume"].mean()
+            avg_volume = ha_historical_candles[duration - 1]["volume"].mean()
 
             # Add the average trading volume to the current candle
             current_candles[duration - 1]["avg_volume"] = avg_volume
-
-            print(
-                f"Number of rows in historical_candles for {duration}-minute candles: {len(historical_candles[duration - 1])}"
-            )
-
-            # Use pd.concat to add the current_candles[duration - 1] to historical_candles[duration - 1]
-            historical_candles[duration - 1] = pd.concat(
-                [
-                    historical_candles[duration - 1],
-                    pd.DataFrame([current_candles[duration - 1]]),
-                ],
-                ignore_index=True,
-            )
-
-            historical_candles[duration - 1] = historical_candles[duration - 1].tail(
-                100
-            )
-
-            print(f"{duration}-minute candle:", current_candles[duration - 1])
 
             current_candles[duration - 1] = create_new_candle(
                 timestamp, price, duration
@@ -62,4 +71,4 @@ def process_trade(trade, current_candles, historical_candles):
 
         update_candle(current_candles[duration - 1], price, amount)
 
-    return current_candles, historical_candles
+    return current_candles, ha_historical_candles

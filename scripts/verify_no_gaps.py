@@ -1,5 +1,5 @@
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 # Read the combined CSV file
 combined_data = pd.read_csv("kc_btc_1min_combined.csv")

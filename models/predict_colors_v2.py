@@ -73,21 +73,33 @@ grid_search = GridSearchCV(
     LogisticRegression(max_iter=1000), param_grid, scoring="accuracy", cv=5
 )
 
-# Fit the GridSearchCV object
-grid_search.fit(X_train, y_train)
+best_combos = [
+    ["PP", "R1", "S1", "BBU_5_2.0", "BBB_5_2.0", "BBP_5_2.0", "RSI"],
+    ["PP", "R1", "S2", "BBU_5_2.0", "BBB_5_2.0", "BBP_5_2.0", "RSI"],
+    ["PP", "R2", "BBU_5_2.0", "BBB_5_2.0", "BBP_5_2.0", "RSI"],
+]
 
-# Get the best hyperparameters
-best_params = grid_search.best_params_
+for combo in best_combos:
+    X_train = train_df[combo]
+    y_train = train_df["color"]
+    X_test = test_df[combo]
+    y_test = test_df["color"]
 
-# Train a Logistic Regression model with the best hyperparameters
-model = LogisticRegression(
-    max_iter=1000, C=best_params["C"], solver=best_params["solver"]
-)
-model.fit(X_train, y_train)
+    # Fit the GridSearchCV object for the current combination
+    grid_search.fit(X_train, y_train)
 
-# Make predictions with the optimized model
-y_pred = model.predict(X_test)
+    # Get the best hyperparameters for the current combination
+    best_params = grid_search.best_params_
 
-# Calculate the improved accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy}")
+    # Train a Logistic Regression model with the best hyperparameters for the current combination
+    model = LogisticRegression(
+        max_iter=1000, C=best_params["C"], solver=best_params["solver"]
+    )
+    model.fit(X_train, y_train)
+
+    # Make predictions with the optimized model for the current combination
+    y_pred = model.predict(X_test)
+
+    # Calculate the improved accuracy for the current combination
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Combination: {combo}, Accuracy: {accuracy}")

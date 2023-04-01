@@ -1,5 +1,9 @@
 import pandas as pd
 
+## WARNING ##
+## TODO ##
+# Grey should only ever exist on the first row, time should be date and time in 2 different columns.
+
 
 def assign_color(row):
     if row["open"] == row["close"]:

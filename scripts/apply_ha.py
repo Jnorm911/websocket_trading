@@ -1,40 +1,44 @@
-import pandas as pd
 import os
+import pandas as pd
+import pandas_ta as ta
 
 
-def heiken_ashi(df):
-    ha_df = pd.DataFrame(index=df.index, columns=df.columns)
-    ha_df["time"] = df["time"]
-    ha_df["open"] = (df["open"] + df["close"]) / 2
-    ha_df["close"] = (df["open"] + df["close"] + df["high"] + df["low"]) / 4
-    ha_df["high"] = df[["high", "open", "close"]].max(axis=1)
-    ha_df["low"] = df[["low", "open", "close"]].min(axis=1)
-    ha_df["volume"] = df["volume"]
-    ha_df["turnover"] = df["turnover"]
-    ha_df["color"] = df["color"]
-    ha_df["avg_vol_last_100"] = df["avg_vol_last_100"]
-    return ha_df
+# Function to add Heikin Ashi columns to a DataFrame
+def add_heikin_ashi_columns(df):
+    heikin_ashi = ta.ha(df["open"], df["high"], df["low"], df["close"])
+    df["open"] = heikin_ashi["HA_open"]
+    df["high"] = heikin_ashi["HA_high"]
+    df["low"] = heikin_ashi["HA_low"]
+    df["close"] = heikin_ashi["HA_close"]
+    return df
 
 
-def save_data_to_csv(data, minute_length, suffix):
-    filename = f"kc_btc_{minute_length}min{suffix}.csv"
-    data.to_csv(filename, index=False)
-    print(f"Data saved to {filename}")
+# Directory containing the CSV files
+csv_directory = "data/kc/btc/raw"
 
+# Directory to save the updated CSV files
+output_directory = "data/kc/btc/heiken_ashi"
 
-for minute_length in range(1, 61):
-    # Read the original CSV file
-    input_filename = f"kc_btc_{minute_length}min.csv"
-    if os.path.exists(input_filename):
-        data = pd.read_csv(input_filename)
+# Create the output directory if it doesn't exist
+os.makedirs(output_directory, exist_ok=True)
 
-        # Convert the 'time' column to datetime
-        data["time"] = pd.to_datetime(data["time"])
+# Loop through each file in the directory
+for file_name in os.listdir(csv_directory):
+    if file_name.startswith("kc_btc_") and file_name.endswith(".csv"):
+        file_path = os.path.join(csv_directory, file_name)
 
-        # Calculate Heikin-Ashi candles
-        ha_data = heiken_ashi(data)
+        # Read the CSV file into a DataFrame
+        df = pd.read_csv(file_path)
 
-        # Save the data to a CSV file with '_ha' appended to the name
-        save_data_to_csv(ha_data, minute_length, "_ha")
-    else:
-        print(f"File {input_filename} not found.")
+        # Add the Heikin Ashi columns
+        df = add_heikin_ashi_columns(df)
+
+        # Create a new file name with '_ha' appended before the file extension
+        new_file_name = file_name[:-4] + "_ha.csv"
+        new_file_path = os.path.join(output_directory, new_file_name)
+
+        # Save the updated DataFrame to the new file
+        df.to_csv(new_file_path, index=False)
+        print(
+            f"Updated {file_name} with Heikin Ashi columns and saved as {new_file_name} in {output_directory}"
+        )

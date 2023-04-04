@@ -36,6 +36,55 @@ def add_rsi(df):
     return df
 
 
+# Function to add SMA columns to a DataFrame
+def add_sma(df):
+    sma_5 = ta.sma(df["close"], length=5)
+    sma_10 = ta.sma(df["close"], length=10)
+    sma_20 = ta.sma(df["close"], length=20)
+
+    df["SMA_5"] = sma_5
+    df["SMA_10"] = sma_10
+    df["SMA_20"] = sma_20
+
+    return df
+
+
+def add_ema(df):
+    ema_5 = ta.ema(df["close"], length=5)
+    ema_10 = ta.ema(df["close"], length=10)
+    ema_20 = ta.ema(df["close"], length=20)
+
+    df["EMA_5"] = ema_5
+    df["EMA_10"] = ema_10
+    df["EMA_20"] = ema_20
+
+    return df
+
+
+def add_stochastic_oscillator(df):
+    stoch = ta.stoch(df["high"], df["low"], df["close"])
+    df = pd.concat([df, stoch], axis=1)
+    return df
+
+
+def add_atr(df):
+    atr = ta.atr(df["high"], df["low"], df["close"])
+    df["ATR"] = atr
+    return df
+
+
+def add_roc(df):
+    roc = ta.roc(df["close"])
+    df["ROC"] = roc
+    return df
+
+
+def add_cci(df):
+    cci = ta.cci(df["high"], df["low"], df["close"])
+    df["CCI"] = cci
+    return df
+
+
 # Directory containing the CSV files
 csv_directory = "data/kc/btc/heiken_ashi"
 
@@ -53,17 +102,17 @@ for file_name in os.listdir(csv_directory):
         # Read the CSV file into a DataFrame
         df = pd.read_csv(file_path)
 
-        # Add the MACD columns
+        # Add the following columns
         df = add_macd_columns(df)
-
-        # Add the Standard Pivot Points columns
         df = add_standard_pivot_points(df)
-
-        # Add the Bollinger Bands columns
         df = add_bollinger_bands(df)
-
-        # Add the RSI column
         df = add_rsi(df)
+        df = add_sma(df)
+        df = add_ema(df)
+        df = add_stochastic_oscillator(df)
+        df = add_atr(df)
+        df = add_roc(df)
+        df = add_cci(df)
 
         # Create a new file name with '_ti' appended before the file extension
         new_file_name = file_name[:-4] + "_ti.csv"
@@ -72,5 +121,5 @@ for file_name in os.listdir(csv_directory):
         # Save the updated DataFrame to the new file path
         df.to_csv(new_file_path, index=False)
         print(
-            f"Updated {file_name} with MACD, Standard Pivot Points, Bollinger Bands, and RSI columns and saved as {new_file_name} in {output_directory}"
+            f"Updated {file_name} with short to medium length trade indicator columns and saved as {new_file_name} in {output_directory}"
         )

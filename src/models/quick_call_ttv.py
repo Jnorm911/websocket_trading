@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-## TTV Test, Train, & Validation ##
+## TTV Test, Train, & Validation for color change ##
 
 # Load the preprocessed data for a specific candle length (replace 'i' with the desired value)
 i = 59  # or any other value between 1 and 60
@@ -10,7 +10,7 @@ df = pd.read_csv(preprocessed_data_path)
 
 # Predicting the next candle color #
 # Define your target variable (column) and remove it from the features list
-target_column = "color_green"
+target_column = "color_change"
 X = df.drop(columns=[target_column])
 y = df[target_column]
 

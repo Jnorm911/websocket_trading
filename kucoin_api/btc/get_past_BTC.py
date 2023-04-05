@@ -2,6 +2,9 @@ import time
 import pandas as pd
 from kucoin.client import Market
 
+##### IMPORTANT ######
+# KEEP UNIX TIME, time only needs 1 column not date and time
+
 day_in_seconds = 60 * 60 * 24
 
 

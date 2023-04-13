@@ -1,4 +1,3 @@
-import itertools
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
@@ -6,6 +5,8 @@ from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.tree import DecisionTreeClassifier
 from concurrent.futures import ThreadPoolExecutor
+from sklearn.feature_selection import RFE
+from sklearn.feature_selection import SelectKBest, chi2
 
 
 # Define the function to evaluate a single model
@@ -13,28 +14,53 @@ def evaluate_model(name, model):
     best_score = 0
     best_features = []
 
-    # Loop through all possible feature combinations
-    for n in range(1, len(features) + 1):
-        for subset in itertools.combinations(features, n):
-            # Prepare the data for the current feature subset
-            X_subset = X[list(subset)]
+    # Initialize RFE
+    rfe = RFE(estimator=model, n_features_to_select=10, step=1)
+    rfe.fit(X_train, y_train)
 
-            # Train the model and calculate the cross-validation score
-            cv_scores = cross_val_score(model, X_subset, y, cv=5, scoring="accuracy")
-            cv_scores_mean = np.mean(cv_scores)
+    # Get the selected features and their indices
+    selected_features = X_train.columns[rfe.support_]
+    X_subset = X[selected_features]
 
-            # Print the current model, subset, and cross-validation score
-            print(f"Model: {name}" f" Subset: {subset}", f" Score: {cv_scores_mean}")
+    # Train the model and calculate the cross-validation score
+    cv_scores = cross_val_score(model, X_subset, y, cv=5, scoring="accuracy")
+    cv_scores_mean = np.mean(cv_scores)
 
-            # Update the best score and features if the current score is better
-            if cv_scores_mean > best_score:
-                best_score = cv_scores_mean
-                best_features = subset
+    # Print the current model, subset, and cross-validation score
+    print(f"Model: {name}", f"Subset: {selected_features}", f"Score: {cv_scores_mean}")
 
     return {
         "Model": name,
-        "Best Score": best_score,
-        "Best Features": best_features,
+        "Best Score": cv_scores_mean,
+        "Best Features": selected_features,
+        "Feature Selection Method": "RFE",
+    }
+
+
+def evaluate_model_selectkbest(name, model):
+    best_score = 0
+    best_features = []
+
+    # Initialize SelectKBest
+    kbest = SelectKBest(score_func=chi2, k=10)
+    kbest.fit(X_train, y_train)
+
+    # Get the selected features and their indices
+    selected_features = X_train.columns[kbest.get_support()]
+    X_subset = X[selected_features]
+
+    # Train the model and calculate the cross-validation score
+    cv_scores = cross_val_score(model, X_subset, y, cv=5, scoring="accuracy")
+    cv_scores_mean = np.mean(cv_scores)
+
+    # Print the current model, subset, and cross-validation score
+    print(f"Model: {name}", f"Subset: {selected_features}", f"Score: {cv_scores_mean}")
+
+    return {
+        "Model": name,
+        "Best Score": cv_scores_mean,
+        "Best Features": selected_features,
+        "Feature Selection Method": "SelectKBest",
     }
 
 
@@ -85,7 +111,7 @@ models = [
     ("Gradient Boosting Classifier (n_estimators=100)", gb_n_estimators_100),
     ("Gradient Boosting Classifier (learning_rate=0.1)", gb_learning_rate_01),
     ("Gradient Boosting Classifier (max_depth=3)", gb_max_depth_3),
-    ("Multinomial Naive Bayes", MultinomialNB()),
+    # ("Multinomial Naive Bayes", MultinomialNB()),
     ("Random Forest Classifier (min_samples_split=10)", rf_min_samples_split_10),
 ]
 
@@ -93,15 +119,22 @@ results = []
 
 # Run each model evaluation in its own thread
 with ThreadPoolExecutor() as executor:
-    futures = [executor.submit(evaluate_model, name, model) for name, model in models]
+    futures_rfe = [
+        executor.submit(evaluate_model, name, model) for name, model in models
+    ]
+    futures_selectkbest = [
+        executor.submit(evaluate_model_selectkbest, name, model)
+        for name, model in models
+    ]
 
-    for future in futures:
+    for future in futures_rfe + futures_selectkbest:
         result = future.result()
         print("Model:", result["Model"])
         print("Best score:", result["Best Score"])
         print("Best features:", result["Best Features"])
         print()
         results.append(result)
+
 
 # Save the results to a CSV file
 results_df = pd.DataFrame(results)

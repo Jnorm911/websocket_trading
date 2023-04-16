@@ -1,6 +1,6 @@
 Model,Best Score,Best Features,Feature Selection Method
-Random Forest Classifier (max_depth=5),0.6108100140038817,"Index(['volume', 'turnover', 'avg_vol_last_100', 'MACDs_12_26_9', 'BBB_5_2.0',
-       'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'ATR', 'CCI'],
+Random Forest Classifier (max_depth=5),0.6033707589121196,"Index(['volume', 'turnover', 'avg_vol_last_100', 'MACD_12_26_9', 'BBU_5_2.0',
+       'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'ATR', 'CCI'],
       dtype='object')",RFE
 Decision Tree Classifier (Max Depth 5),0.5602817974105103,"Index(['turnover', 'avg_vol_last_100', 'MACDs_12_26_9', 'R2', 'R3',
        'BBB_5_2.0', 'BBP_5_2.0', 'SMA_20', 'STOCHk_14_3_3', 'ATR'],
@@ -17,27 +17,27 @@ Gradient Boosting Classifier (learning_rate=0.1),0.5394221556150651,"Index(['vol
 Gradient Boosting Classifier (max_depth=3),0.5394221556150651,"Index(['volume', 'avg_vol_last_100', 'MACD_12_26_9', 'BBB_5_2.0', 'BBP_5_2.0',
        'RSI', 'EMA_10', 'STOCHk_14_3_3', 'ATR', 'CCI'],
       dtype='object')",RFE
-Random Forest Classifier (min_samples_split=10),0.5552858511657618,"Index(['volume', 'turnover', 'MACDs_12_26_9', 'S3', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'STOCHk_14_3_3', 'ATR', 'CCI'],
+Random Forest Classifier (min_samples_split=10),0.570153305653146,"Index(['volume', 'turnover', 'avg_vol_last_100', 'MACDs_12_26_9', 'BBB_5_2.0',
+       'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'ATR', 'CCI'],
       dtype='object')",RFE
-Random Forest Classifier (max_depth=5),0.5642286809326094,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Random Forest Classifier (max_depth=5),0.6009028818514606,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest
-Decision Tree Classifier (Max Depth 5),0.5870525514089872,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Decision Tree Classifier (Max Depth 5),0.5954438247795003,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest
-Gradient Boosting Classifier,0.5340159202024422,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Gradient Boosting Classifier,0.555287079576444,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest
-Gradient Boosting Classifier (n_estimators=100),0.5340159202024422,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Gradient Boosting Classifier (n_estimators=100),0.555287079576444,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest
-Gradient Boosting Classifier (learning_rate=0.1),0.5340159202024422,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Gradient Boosting Classifier (learning_rate=0.1),0.555287079576444,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest
-Gradient Boosting Classifier (max_depth=3),0.5340159202024422,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Gradient Boosting Classifier (max_depth=3),0.555287079576444,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest
-Random Forest Classifier (min_samples_split=10),0.5196300027025036,"Index(['time', 'volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0',
-       'RSI', 'SMA_20', 'STOCHk_14_3_3', 'CCI'],
+Random Forest Classifier (min_samples_split=10),0.5458577991794217,"Index(['volume', 'turnover', 'BBL_5_2.0', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI',
+       'SMA_20', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'CCI'],
       dtype='object')",SelectKBest

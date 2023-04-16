@@ -31,12 +31,12 @@ for i in range(1, 61):
     columns_to_scale = numeric_columns.drop(["time", "color_change"])
 
     # Standard scaler
-    # standard_scaler = StandardScaler()
-    # df[columns_to_scale] = standard_scaler.fit_transform(df[columns_to_scale])
+    standard_scaler = StandardScaler()
+    df[columns_to_scale] = standard_scaler.fit_transform(df[columns_to_scale])
 
     # minmax
-    minmax_scaler = MinMaxScaler()
-    df[columns_to_scale] = minmax_scaler.fit_transform(df[columns_to_scale])
+    # minmax_scaler = MinMaxScaler()
+    # df[columns_to_scale] = minmax_scaler.fit_transform(df[columns_to_scale])
 
     # robust
     # robust_scaler = RobustScaler()

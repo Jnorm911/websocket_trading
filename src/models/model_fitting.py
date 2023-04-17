@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import RFE, SelectKBest, f_classif, SelectFromModel
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression, RidgeCV
+from sklearn.linear_model import LogisticRegression, RidgeClassifierCV
 from sklearn.metrics import accuracy_score
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
@@ -54,7 +54,7 @@ def apply_feature_selection(X_train, y_train):
     print("Applying Ridge...")
     # Drop the "time" column
     X_train_no_time = X_train.drop(columns=["time"])
-    ridge = RidgeCV(cv=5, alphas=[1e-3, 1e-2, 1e-1, 1, 10, 100])
+    ridge = RidgeClassifierCV(cv=5, alphas=[1e-3, 1e-2, 1e-1, 1, 10, 100])
     ridge_selector = SelectFromModel(ridge, prefit=True)
     ridge.fit(X_train_no_time, y_train)
 
@@ -71,9 +71,16 @@ def apply_feature_selection(X_train, y_train):
     }
 
 
-# Function to fit and evaluate models
 def fit_and_evaluate(X_train, X_test, y_train, y_test, selected_features):
     results = {}
+    models = {
+        "RandomForest": RandomForestClassifier(random_state=42),
+        "LogisticRegression": LogisticRegression(random_state=42),
+        "XGBoost": XGBClassifier(random_state=42),
+        "LightGBM": LGBMClassifier(random_state=42),
+        "CatBoost": CatBoostClassifier(random_state=42, verbose=0),
+        "Ridge": RidgeClassifierCV(alphas=[1e-3, 1e-2, 1e-1, 1, 10, 100]),
+    }
 
     for method, features in selected_features.items():
         print(f"Features selected by {method}: {features}")  # Debugging print statement
@@ -81,12 +88,12 @@ def fit_and_evaluate(X_train, X_test, y_train, y_test, selected_features):
         X_test_selected = X_test[features]
 
         if not X_train_selected.empty:  # Check if X_train_selected is not empty
-            model_rf = RandomForestClassifier(random_state=42)
-            model_rf.fit(X_train_selected, y_train)
-            y_pred_rf = model_rf.predict(X_test_selected)
-            accuracy_rf = accuracy_score(y_test, y_pred_rf)
+            for model_name, model in models.items():
+                model.fit(X_train_selected, y_train)
+                y_pred = model.predict(X_test_selected)
+                accuracy = accuracy_score(y_test, y_pred)
 
-            results[f"{method}_RandomForest"] = accuracy_rf
+                results[f"{method}_{model_name}"] = accuracy
         else:
             print(f"No features selected by {method}. Skipping model fitting.")
 
@@ -123,6 +130,7 @@ for i in range(3, 61, 3):
                 "model": [model],
                 "duration": [i],
                 "best_features": [selected_features[model.split("_")[0]]],
+                "accuracy": [accuracy],  # Add the accuracy column here
             }
         )
         all_results = pd.concat([all_results, new_row], ignore_index=True)

@@ -99,8 +99,7 @@ all_results = pd.DataFrame(columns=["model", "duration", "best_features"])
 # Loop through each file, apply feature selection, fit models, and store the results
 for i in range(3, 61, 3):
     print(f"Processing file {i} of 60")
-    file_path = rf"src\models\processed\kc_btc_3min_ha_ti_pro.csv"
-    # file_path = f"processed/kc_btc_{i}min_ha_ti_pro.csv"
+    file_path = rf"data\kc\btc\heiken_ashi\with_trade_indicators\processed\kc_btc_{i}min_ha_ti_pro.csv"
     data = pd.read_csv(file_path)
     target = "color_change"
     X = data.drop(columns=[target])

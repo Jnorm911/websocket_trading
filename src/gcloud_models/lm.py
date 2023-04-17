@@ -6,6 +6,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
 
+##################### TEST EVERY POSSIBLE COMBINATION USING COLUMN TIME ################################
+
+
 def logistic_regression(X_train, X_val, y_train, y_val, features_combination):
     model = LogisticRegression(max_iter=1000)
     model.fit(X_train[list(features_combination)], y_train)
@@ -76,8 +79,7 @@ df = pd.read_csv(preprocessed_data_path)
 
 # Define the target variable and remove it from the features list
 target_column = "color_change"
-time_column = "time"
-X = df.drop(columns=[target_column, time_column])
+X = df.drop(columns=[target_column])
 y = df[target_column]
 
 # Split the data into training, validation, and test sets

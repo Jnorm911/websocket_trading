@@ -100,8 +100,7 @@ df = pd.read_csv(preprocessed_data_path)
 
 # Define the target variable and remove it from the features list
 target_column = "color_change"
-time_column = "time"
-X = df.drop(columns=[target_column, time_column])
+X = df.drop(columns=[target_column])
 y = df[target_column]
 
 # Split the data into training, validation, and test sets

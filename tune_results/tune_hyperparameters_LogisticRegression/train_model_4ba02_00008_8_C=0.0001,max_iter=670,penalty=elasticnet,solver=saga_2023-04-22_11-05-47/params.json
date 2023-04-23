@@ -1,0 +1,9 @@
+{
+  "model": "LogisticRegression",
+  "params": {
+    "C": 5.868264113293549e-05,
+    "max_iter": 670,
+    "penalty": "elasticnet",
+    "solver": "saga"
+  }
+}

@@ -94,7 +94,7 @@ def apply_feature_selection(X_train, y_train):
 
     # Logistic Regression
     print("Applying Logistic Regression...")
-    model_lr = LogisticRegression(random_state=42, solver="sag", max_iter=10000)
+    model_lr = LogisticRegression(random_state=42, solver="liblinear", max_iter=10000)
     model_lr.fit(X_train, y_train)
     lr_selector = SelectFromModel(model_lr)
     lr_selector.fit(X_train, y_train)
@@ -112,11 +112,13 @@ def apply_feature_selection(X_train, y_train):
 def fit_and_evaluate(X, y, selected_features, n_splits=5):
     results = {}
     models = {
-        "RandomForest": RandomForestClassifier(random_state=42),
-        "LogisticRegression": LogisticRegression(random_state=42),
-        "KNeighbors": KNeighborsClassifier(),
-        "DecisionTree": DecisionTreeClassifier(random_state=42),
-        "GaussianNB": GaussianNB(),
+        # "RandomForest": RandomForestClassifier(random_state=42),
+        "LogisticRegression": LogisticRegression(
+            random_state=42, solver="liblinear", max_iter=10000
+        ),
+        # "KNeighbors": KNeighborsClassifier(),
+        # "DecisionTree": DecisionTreeClassifier(random_state=42),
+        # "GaussianNB": GaussianNB(),
     }
 
     for method, features in selected_features.items():
@@ -186,7 +188,7 @@ if __name__ == "__main__":
 
     # Save the final results DataFrame to a CSV file
     if not all_results.empty:
-        all_results.to_csv("tree_robust_results.csv", index=False)
-        print("All results saved to 'linear_minmax_results.csv'")
+        all_results.to_csv("linear_minmax_results3.csv", index=False)
+        print("All results saved to 'linear_minmax_results3.csv'")
     else:
         print("No results to save.")

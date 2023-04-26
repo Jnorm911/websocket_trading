@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from sklearnex import patch_sklearn
 
@@ -173,7 +175,16 @@ def fit_and_evaluate(X, y, selected_features, n_splits=5):
 
 
 def process_file(i):
-    file_path = f"/home/jnorm/kline/kc_btc_{i}min_ha_ti_pro.csv"
+    FOLDER_PATH = os.path.join(
+        "data",
+        "kc",
+        "btc",
+        "heiken_ashi",
+        "with_trade_indicators",
+        "robust",
+        "kline",
+    )
+    file_path = os.path.join(FOLDER_PATH, f"kc_btc_{i}min_ha_ti_pro.csv")
     data = pd.read_csv(file_path)
     target = "color_change"
     X = data.drop(columns=[target])
@@ -187,13 +198,13 @@ def process_file(i):
 
     # Update the all_results DataFrame
     new_results = []
-    for model_name, accuracy in results.items():
+    for model_name, result in results.items():
         new_results.append(
             {
                 "model": model_name,
                 "duration": i,
-                "best_features": selected_features,
-                "accuracy": accuracy,
+                "best_features": result["best_features"],
+                "accuracy": result["mean_score"],
             }
         )
 

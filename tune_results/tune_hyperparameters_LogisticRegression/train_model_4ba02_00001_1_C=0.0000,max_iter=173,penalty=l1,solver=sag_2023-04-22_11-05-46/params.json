@@ -1,9 +1,0 @@
-{
-  "model": "LogisticRegression",
-  "params": {
-    "C": 1.1871722763821449e-05,
-    "max_iter": 173,
-    "penalty": "l1",
-    "solver": "sag"
-  }
-}

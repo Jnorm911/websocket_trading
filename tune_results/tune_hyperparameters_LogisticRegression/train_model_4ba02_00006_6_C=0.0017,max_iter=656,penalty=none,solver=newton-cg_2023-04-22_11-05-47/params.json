@@ -1,9 +1,0 @@
-{
-  "model": "LogisticRegression",
-  "params": {
-    "C": 0.0016844707730817791,
-    "max_iter": 656,
-    "penalty": "none",
-    "solver": "newton-cg"
-  }
-}

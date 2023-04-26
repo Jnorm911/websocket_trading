@@ -1,2 +1,0 @@
-accuracy,time_this_iter_s,done,timesteps_total,episodes_total,training_iteration,trial_id,experiment_id,date,timestamp,time_total_s,pid,hostname,node_ip,time_since_restore,timesteps_since_restore,iterations_since_restore,warmup_time
-0.5400645001240387,0.06426382064819336,True,,,1,1c4c6_00003,9ded99fdae304696bee9de5b8e91f612,2023-04-22_02-07-43,1682154463,0.06426382064819336,24868,Tentacle,127.0.0.1,0.06426382064819336,0,1,0.004006147384643555

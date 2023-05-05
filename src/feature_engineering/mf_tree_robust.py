@@ -103,7 +103,7 @@ def apply_feature_selection(X_train, y_train):
     }
 
 
-def fit_and_evaluate_one_model(model_name, model, method, features, X, y, n_splits=5):
+def fit_and_evaluate_one_model(model_name, model, method, features, X, y, n_splits=10):
     X_selected = X[features]
 
     if not X_selected.empty:

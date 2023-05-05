@@ -15,6 +15,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 
+
 ## USE MINMAX KLINE
 
 
@@ -109,16 +110,16 @@ def apply_feature_selection(X_train, y_train):
     }
 
 
-def fit_and_evaluate(X, y, selected_features, n_splits=5):
+def fit_and_evaluate(X, y, selected_features, n_splits=10):
     results = {}
     models = {
-        # "RandomForest": RandomForestClassifier(random_state=42),
+        "RandomForest": RandomForestClassifier(random_state=42),
         "LogisticRegression": LogisticRegression(
             random_state=42, solver="liblinear", max_iter=10000
         ),
-        # "KNeighbors": KNeighborsClassifier(),
-        # "DecisionTree": DecisionTreeClassifier(random_state=42),
-        # "GaussianNB": GaussianNB(),
+        "KNeighbors": KNeighborsClassifier(),
+        "DecisionTree": DecisionTreeClassifier(random_state=42),
+        "GaussianNB": GaussianNB(),
     }
 
     for method, features in selected_features.items():

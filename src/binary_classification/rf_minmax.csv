@@ -1,0 +1,61 @@
+model,duration,best_features,accuracy
+Random Forest with RFECV Feature Selection,3,"['turnover', 'BBB_5_2.0', 'BBP_5_2.0', 'STOCHk_14_3_3', 'ATR', 'CCI']",0.6363717605004467
+Random Forest with Feature Importance Feature Selection,3,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'turnover', 'volume', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'RSI', 'ROC', 'ATR', 'MACDh_12_26_9']",0.6387548406315162
+Random Forest with Boruta Feature Selection,3,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6078641644325291
+Random Forest with RFECV Feature Selection,6,"['turnover', 'BBB_5_2.0', 'BBP_5_2.0', 'STOCHk_14_3_3', 'ATR', 'CCI']",0.6234347048300537
+Random Forest with Feature Importance Feature Selection,6,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'turnover', 'volume', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'RSI', 'ROC', 'ATR', 'MACDh_12_26_9']",0.6281454979129398
+Random Forest with Boruta Feature Selection,6,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6063208109719738
+Random Forest with RFECV Feature Selection,9,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'ATR', 'CCI']",0.6255147717099374
+Random Forest with Feature Importance Feature Selection,9,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'turnover', 'volume', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'ROC', 'RSI']",0.6216651745747538
+Random Forest with Boruta Feature Selection,9,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6052820053715309
+Random Forest with RFECV Feature Selection,12,"['turnover', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'ATR', 'CCI']",0.6301075268817204
+Random Forest with Feature Importance Feature Selection,12,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'turnover', 'volume', 'STOCHk_14_3_3', 'RSI', 'STOCHd_14_3_3', 'ROC', 'MACDh_12_26_9', 'ATR', 'MACD_12_26_9', 'MACDs_12_26_9', 'avg_vol_last_100']",0.6249701314217443
+Random Forest with Boruta Feature Selection,12,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6170848267622462
+Random Forest with RFECV Feature Selection,15,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'STOCHk_14_3_3', 'ATR', 'CCI']",0.6128550074738416
+Random Forest with Feature Importance Feature Selection,15,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'volume', 'turnover', 'STOCHk_14_3_3', 'ROC']",0.6158445440956652
+Random Forest with Boruta Feature Selection,15,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6047832585949178
+Random Forest with RFECV Feature Selection,18,"['volume', 'turnover', 'avg_vol_last_100', 'MACDh_12_26_9', 'MACDs_12_26_9', 'R3', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'ATR', 'ROC', 'CCI']",0.5913824057450628
+Random Forest with Feature Importance Feature Selection,18,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'volume', 'turnover', 'STOCHd_14_3_3', 'ROC', 'MACDh_12_26_9', 'RSI', 'STOCHk_14_3_3', 'ATR', 'MACD_12_26_9', 'MACDs_12_26_9']",0.6078994614003591
+Random Forest with Boruta Feature Selection,18,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6064631956912029
+Random Forest with RFECV Feature Selection,21,['turnover'],0.5213836477987421
+Random Forest with Feature Importance Feature Selection,21,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'turnover', 'volume', 'STOCHd_14_3_3']",0.6018867924528302
+Random Forest with Boruta Feature Selection,21,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.5987421383647799
+Random Forest with RFECV Feature Selection,24,"['turnover', 'avg_vol_last_100', 'MACDh_12_26_9', 'R3', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHd_14_3_3', 'ATR', 'CCI']",0.616546762589928
+Random Forest with Feature Importance Feature Selection,24,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'turnover', 'volume', 'STOCHd_14_3_3', 'STOCHk_14_3_3', 'MACDh_12_26_9']",0.6199040767386091
+Random Forest with Boruta Feature Selection,24,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6019184652278178
+Random Forest with RFECV Feature Selection,27,"['turnover', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHd_14_3_3', 'ATR', 'CCI']",0.6072874493927125
+Random Forest with Feature Importance Feature Selection,27,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'turnover', 'volume', 'RSI', 'STOCHd_14_3_3', 'STOCHk_14_3_3', 'ROC', 'MACDh_12_26_9']",0.6143049932523617
+Random Forest with Boruta Feature Selection,27,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6026990553306343
+Random Forest with RFECV Feature Selection,30,['BBP_5_2.0'],0.5993993993993993
+Random Forest with Feature Importance Feature Selection,30,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'volume', 'turnover', 'STOCHd_14_3_3', 'STOCHk_14_3_3', 'ROC', 'RSI', 'MACDh_12_26_9']",0.6102102102102103
+Random Forest with Boruta Feature Selection,30,"['turnover', 'BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6108108108108108
+Random Forest with RFECV Feature Selection,33,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'ATR', 'CCI']",0.6026446280991735
+Random Forest with Feature Importance Feature Selection,33,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'volume', 'turnover', 'ROC', 'STOCHd_14_3_3', 'RSI', 'ATR', 'MACDh_12_26_9']",0.6132231404958678
+Random Forest with Boruta Feature Selection,33,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.5914049586776859
+Random Forest with RFECV Feature Selection,36,"['volume', 'avg_vol_last_100', 'R2', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'CCI']",0.5909747292418773
+Random Forest with Feature Importance Feature Selection,36,"['BBP_5_2.0', 'volume', 'BBB_5_2.0', 'CCI', 'turnover', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'ROC', 'MACDh_12_26_9']",0.6111913357400722
+Random Forest with Boruta Feature Selection,36,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.6057761732851985
+Random Forest with RFECV Feature Selection,39,"['volume', 'MACDh_12_26_9', 'R3', 'BBB_5_2.0', 'BBP_5_2.0', 'STOCHk_14_3_3', 'CCI']",0.6066536203522505
+Random Forest with Feature Importance Feature Selection,39,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'turnover', 'volume', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'MACDh_12_26_9']",0.6093933463796477
+Random Forest with Boruta Feature Selection,39,"['BBP_5_2.0', 'CCI']",0.5675146771037183
+Random Forest with RFECV Feature Selection,42,['BBP_5_2.0'],0.5763713080168776
+Random Forest with Feature Importance Feature Selection,42,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'volume', 'turnover', 'RSI', 'ROC', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'MACDh_12_26_9']",0.5746835443037974
+Random Forest with Boruta Feature Selection,42,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.5658227848101266
+Random Forest with RFECV Feature Selection,45,"['volume', 'S3', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI', 'STOCHk_14_3_3', 'ROC', 'CCI']",0.5683257918552036
+Random Forest with Feature Importance Feature Selection,45,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'STOCHk_14_3_3', 'turnover', 'volume', 'STOCHd_14_3_3']",0.5877828054298643
+Random Forest with Boruta Feature Selection,45,"['BBP_5_2.0', 'CCI']",0.5420814479638008
+Random Forest with RFECV Feature Selection,48,['BBP_5_2.0'],0.5888888888888889
+Random Forest with Feature Importance Feature Selection,48,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'turnover', 'volume', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'ROC']",0.5739130434782609
+Random Forest with Boruta Feature Selection,48,"['BBP_5_2.0', 'CCI']",0.5739130434782609
+Random Forest with RFECV Feature Selection,51,"['volume', 'BBB_5_2.0', 'BBP_5_2.0', 'STOCHd_14_3_3', 'ATR', 'CCI']",0.5650385604113112
+Random Forest with Feature Importance Feature Selection,51,"['BBP_5_2.0', 'BBB_5_2.0', 'CCI', 'volume', 'turnover', 'STOCHk_14_3_3', 'ROC']",0.587146529562982
+Random Forest with Boruta Feature Selection,51,['BBP_5_2.0'],0.5845758354755783
+Random Forest with RFECV Feature Selection,54,"['volume', 'R2', 'BBB_5_2.0', 'BBP_5_2.0', 'STOCHk_14_3_3', 'CCI']",0.5771117166212534
+Random Forest with Feature Importance Feature Selection,54,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'volume', 'turnover', 'RSI', 'ROC', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'MACDh_12_26_9']",0.591825613079019
+Random Forest with Boruta Feature Selection,54,['BBP_5_2.0'],0.5623978201634877
+Random Forest with RFECV Feature Selection,57,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.5925287356321839
+Random Forest with Feature Importance Feature Selection,57,"['BBP_5_2.0', 'CCI', 'BBB_5_2.0', 'volume', 'turnover', 'STOCHk_14_3_3', 'STOCHd_14_3_3', 'RSI']",0.6045977011494253
+Random Forest with Boruta Feature Selection,57,"['BBB_5_2.0', 'BBP_5_2.0', 'CCI']",0.5919540229885059
+Random Forest with RFECV Feature Selection,60,"['turnover', 'BBB_5_2.0', 'BBP_5_2.0', 'RSI']",0.5612121212121213
+Random Forest with Feature Importance Feature Selection,60,"['BBP_5_2.0', 'BBB_5_2.0', 'volume', 'CCI', 'ROC', 'turnover', 'RSI', 'STOCHk_14_3_3', 'STOCHd_14_3_3']",0.5751515151515152
+Random Forest with Boruta Feature Selection,60,['BBP_5_2.0'],0.5587878787878788

@@ -1,0 +1,9 @@
+,Lasso,Ridge,ElasticNet
+0,turnover,high,volume
+1,avg_vol_last_100,low,turnover
+2,MACDs_12_26_9,R1,R3
+3,R3,S1,S3
+4,BBB_5_2.0,R2,BBB_5_2.0
+5,BBP_5_2.0,S2,ATR
+6,ATR,R3,
+7,,S3,

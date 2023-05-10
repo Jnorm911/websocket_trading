@@ -92,38 +92,19 @@ def apply_feature_selection(X, y, estimator):
 
 
 def fit_and_evaluate(X, y, selected_features, estimator):
-    model = estimator
-    results = {}
     tscv = TimeSeriesSplit(n_splits=5)
-
+    results = {}
+    model = estimator
     for method, features in selected_features.items():
         if method == "SHAP":
             for n, selected_features in features.items():
                 scores = []
                 for train_index, test_index in tscv.split(X):
                     X_train, X_test = (
-                        X[selected_features].iloc[train_index],
-                        X[selected_features].iloc[test_index],
+                        print("Features used:", features),
+                        X.iloc[train_index][selected_features],
+                        X.iloc[test_index][selected_features],
                     )
-                    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
-
-                    model.fit(X_train, y_train)
-                    y_pred = model.predict(X_test)
-                    score = accuracy_score(y_test, y_pred)
-                    scores.append(score)
-
-                avg_score = np.mean(scores)
-                results[(method, n)] = {
-                    "features": selected_features,
-                    "accuracy": avg_score,
-                }
-        else:  # This will handle "RFECV" and "GradientBoosting"
-            scores = []
-            for train_index, test_index in tscv.split(X):
-                X_train, X_test = (
-                    X[features].iloc[train_index],
-                    X[features].iloc[test_index],
-                )
                 y_train, y_test = y.iloc[train_index], y.iloc[test_index]
 
                 model.fit(X_train, y_train)
@@ -132,10 +113,30 @@ def fit_and_evaluate(X, y, selected_features, estimator):
                 scores.append(score)
 
             avg_score = np.mean(scores)
-            results[method] = {
-                "features": features,
+            results[(method, n)] = {
+                "features": selected_features,
                 "accuracy": avg_score,
             }
+    else:  # This will handle "RFECV" and "GradientBoosting"
+        scores = []
+        for train_index, test_index in tscv.split(X):
+            X_train, X_test = (
+                print("Features used:", features),
+                X.iloc[train_index][features],
+                X.iloc[test_index][features],
+            )
+            y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+            score = accuracy_score(y_test, y_pred)
+            scores.append(score)
+
+        avg_score = np.mean(scores)
+        results[method] = {
+            "features": features,
+            "accuracy": avg_score,
+        }
 
     return results
 

@@ -133,4 +133,3 @@ dmypy.json
 
 # Model info
 catboost_info/
-data/kc/btc/heiken_ashi/with_trade_indicators/raw/kc_btc_1min_ha_ti.csv

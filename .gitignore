@@ -1,3 +1,6 @@
+#File too large
+*.kc_btc_1min_ha_ti.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

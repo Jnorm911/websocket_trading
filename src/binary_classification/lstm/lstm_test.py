@@ -23,9 +23,6 @@ def create_dataset(X, Y, look_back=1):
 data_path = "data/kc/btc/heiken_ashi/with_trade_indicators/raw/kc_btc_60min_ha_ti.csv"
 df = pd.read_csv(data_path)
 
-# Handle 'grey' color: set it as the color of the previous row
-df.loc[df["color"] == "grey", "color"] = df["color"].shift()
-
 # Create color_change feature
 df["color_change"] = df["color"].ne(df["color"].shift()).astype(int)
 
@@ -52,9 +49,9 @@ features_to_scale = df.columns.drop(
     [
         "color",
         "color_change",
-        "RSI_5",
-        "RSI_10",
-        "RSI_14",
+        # "RSI_5",
+        # "RSI_10",
+        # "RSI_14",
     ]
 )
 

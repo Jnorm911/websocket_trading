@@ -1,5 +1,16 @@
 import pandas as pd
 
+x = []
+x.append(1)
+y = x
+x.append(2)
+y.append(3)
+
+x = None
+
+print(x)
+print(y)
+
 # # Set display options to show all rows and columns
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)

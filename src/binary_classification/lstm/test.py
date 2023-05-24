@@ -1,25 +1,27 @@
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-
-x = []
-x.append(1)
-y = x
-x.append(2)
-y.append(3)
-
-x = None
-
-print(x)
-print(y)
-
-# # Set display options to show all rows and columns
-pd.set_option("display.max_rows", None)
-pd.set_option("display.max_columns", None)
-
-# Load the data from the CSV file
-df = pd.read_csv("src/binary_classification/lstm/model_accuracy_results.csv")
-
-# Sort the DataFrame by the 'accuracy' column in ascending order
-df_sorted = df.sort_values("accuracy", ascending=True)
-
-# Print the sorted DataFrame
-print(df_sorted)
+import seaborn as sns
+from collections import Counter
+from keras.callbacks import EarlyStopping
+from keras.layers import LSTM, Dense, Dropout, LSTM
+from keras.models import Sequential
+from keras.optimizers import Adam
+from scipy.signal import detrend
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import SelectFromModel
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.preprocessing import MinMaxScaler
+from statsmodels.tsa.seasonal import seasonal_decompose
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    roc_curve,
+    roc_auc_score,
+)
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import LSTM
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.metrics import accuracy_score

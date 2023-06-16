@@ -193,6 +193,11 @@ def add_rsi(df):
     return df
 
 
+def add_volume_change(df):
+    df["volume_change"] = df["volume"].diff()
+    return df
+
+
 # Directory containing the CSV files
 csv_directory = "data/kc/btc/heiken_ashi/raw"
 
@@ -211,6 +216,7 @@ for file_name in os.listdir(csv_directory):
         df = pd.read_csv(file_path)
 
         # Add the following columns
+        df = add_volume_change(df)
         df = add_standard_pivot_points(df)
         df = add_rsi(df)
         df = add_atr(df)

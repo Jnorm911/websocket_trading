@@ -1,11 +1,7 @@
 import pandas as pd
-from datetime import timedelta
 
-# Read the combined CSV file
-combined_data = pd.read_csv("kc_btc_1min_combined.csv")
-
-# Convert the 'time' column to datetime
-combined_data["time"] = pd.to_datetime(combined_data["time"])
+# Read the CSV file
+combined_data = pd.read_csv("data/kc/btc/raw/kc_btc_1min.csv")
 
 # Sort the DataFrame by the 'time' column
 combined_data = combined_data.sort_values(by="time")
@@ -24,7 +20,8 @@ for i in range(1, len(combined_data)):
     previous_time = combined_data.iloc[i - 1]["time"]
     time_difference = current_time - previous_time
 
-    if time_difference != timedelta(minutes=1):
+    # Unix timestamp for 1 minute is 60
+    if time_difference != 60:
         print(f"Gap detected between {previous_time} and {current_time}.")
         gaps_found += 1
 

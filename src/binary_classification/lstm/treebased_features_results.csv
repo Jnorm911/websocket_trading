@@ -1,0 +1,37 @@
+classifier,best_features,feature_count,precision,recall,f1_score
+RandomForestClassifier(),"[Index(['volume', 'AD', 'ADOSC_3_10', 'ADX_14', 'DMN_14', 'APO_12_26',
+       'BBB_5_2.0', 'BBP_5_2.0', 'BIAS_SMA_26', 'BOP',
+       ...
+       'equivolume_width', 'hour', 'pnf_ATR', 'kagi_dir', 'kagi_volume',
+       'kagi_macdhist', 'kagi_rsi', 'kagi_slowk', 'kagi_slowd', 'kagi_ad'],
+      dtype='object', length=240), Index(['volume', 'ADOSC_3_10', 'ADX_14', 'DMP_14', 'DMN_14', 'BBB_5_2.0',
+       'BBP_5_2.0', 'BOP', 'AR_26', 'BR_26',
+       ...
+       'kagi_dir', 'kagi_volume', 'kagi_macd', 'kagi_macdhist', 'kagi_rsi',
+       'kagi_slowk', 'kagi_slowd', 'kagi_atr', 'kagi_adx', 'kagi_ad'],
+      dtype='object', length=212), Index(['volume', 'ADOSC_3_10', 'ADX_14', 'BBB_5_2.0', 'BBP_5_2.0', 'BOP',
+       'BR_26', 'CCI_14_0.015', 'open_Z_30_1', 'high_Z_30_1',
+       ...
+       'pnf_MACD', 'kagi_dir', 'kagi_volume', 'kagi_macdhist', 'kagi_rsi',
+       'kagi_slowk', 'kagi_slowd', 'kagi_atr', 'kagi_adx', 'kagi_ad'],
+      dtype='object', length=214), Index(['volume', 'ABER_ATR_5_15', 'ADOSC_3_10', 'ADX_14', 'DMP_14', 'ATRr_14',
+       'BBB_5_2.0', 'BBP_5_2.0', 'BIAS_SMA_26', 'BOP',
+       ...
+       'kagi_dir', 'kagi_volume', 'kagi_macd', 'kagi_macdhist', 'kagi_rsi',
+       'kagi_slowk', 'kagi_slowd', 'kagi_atr', 'kagi_adx', 'kagi_ad'],
+      dtype='object', length=220), Index(['volume', 'ADOSC_3_10', 'ADX_14', 'BBB_5_2.0', 'BBP_5_2.0', 'BOP',
+       'AR_26', 'BR_26', 'CCI_14_0.015', 'open_Z_30_1',
+       ...
+       'kagi_dir', 'kagi_volume', 'kagi_macd', 'kagi_macdhist', 'kagi_rsi',
+       'kagi_slowk', 'kagi_slowd', 'kagi_atr', 'kagi_adx', 'kagi_ad'],
+      dtype='object', length=202)]","[240, 212, 214, 220, 202]",0.9509637904454038,0.8549925859054586,0.8961315167221576
+DecisionTreeClassifier(),"[Index(['low', 'EBSW_40_10', 'NVI_1', 'PVOh_12_26_9', 'HA_high_low', 'HA_body',
+       'op_cl_diff', 'pct_change', 'williams_r', 'lag_return_5', 'vrsi',
+       'avg_vol_last_100', 'kagi_dir'],
+      dtype='object'), Index(['close', 'EBSW_40_10', 'op_cl_diff', 'price_to_prev_high', 'high_pct',
+       'BBP_5_2.0_5', 'hollow_candle', 'kagi_dir'],
+      dtype='object'), Index(['close', 'BOP', 'OBVe_50', 'op_cl_diff', 'price_to_prev_high',
+       'BBP_5_2.0_5', 'kagi_dir'],
+      dtype='object'), Index(['BBP_5_2.0', 'BOP', 'op_cl_diff', 'kagi_dir'], dtype='object'), Index(['BBP_5_2.0', 'BOP', 'op_cl_diff', 'price_to_prev_high', 'hollow_candle',
+       'kagi_dir'],
+      dtype='object')]","[13, 8, 7, 4, 6]",0.9921628189108066,0.9490643373189627,0.9693778528441361

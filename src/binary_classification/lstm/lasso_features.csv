@@ -1,0 +1,6 @@
+split,best_features,feature_count
+1,"['DEC_1', 'kagi_dir']",2
+2,"['CDL_DOJI_10_0.1', 'DEC_1', 'kagi_dir']",3
+3,"['CDL_DOJI_10_0.1', 'DEC_1', 'close_open_renko', 'high_low_renko', 'kagi_dir']",5
+4,"['CDL_DOJI_10_0.1', 'DEC_1', 'close_open_renko', 'high_low_renko', 'kagi_dir']",5
+5,"['CDL_DOJI_10_0.1', 'STC_10_12_26_0.5', 'STCstoch_10_10_50_0.5', 'close_open_renko', 'high_low_renko', 'direction_renko']",6
